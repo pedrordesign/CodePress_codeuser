@@ -6,7 +6,8 @@ namespace CodePress\CodeUser\Providers;
 use CodePress\CodeUser\Repository\UserRepositoryEloquent;
 use CodePress\CodeUser\Repository\UserRepositoryInterface;
 use CodePress\CodeUser\Routing\Router;
-use Cviebrock\EloquentSluggable\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
+
 
 class CodeUserServiceProvider extends ServiceProvider
 {
@@ -44,6 +45,7 @@ class CodeUserServiceProvider extends ServiceProvider
             return new Router();
             //return new \CodePress\CodeUser\Routing\Router;
         });
+        $this->app->register(EventServiceProvider::class);
     }
 
 }
