@@ -47,6 +47,7 @@ class AdminPostController extends Controller
         $users = $this->repository->all();
         return $this->response->view('codeuser::edit', compact('user', 'users'));
     }
+    
     public function update(Request $request, $id)
     {
         $data = $request->all();
