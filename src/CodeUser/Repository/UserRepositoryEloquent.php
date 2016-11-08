@@ -14,7 +14,8 @@ class UserRepositoryEloquent extends AbstractRepository implements UserRepositor
         $data['password'] = bcrypt($password);
         $result = parent::create($data);
         //event(new UserCreatedEvent($result, $password));
-        event('event.codepress', ['Olha o Evento Ai ->>>>>>>>>>>>>>>>>   ']);
+        event('TestEventListener\Numero1', ['Olha o Evento 1 Ai ->>>>>>>>>>>>>>>>>   ']);
+        event('event.numero2', ['Olha o Evento 2 Ai ->>>>>>>>>>>>>>>>>   ']);
         return $result;
     }
 

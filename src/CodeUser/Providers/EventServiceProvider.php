@@ -16,6 +16,7 @@ class EventServiceProvider extends ServiceProvider
 
     ];
 
+
     /**
      * Register any events for your application.
      *
@@ -24,12 +25,11 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        parent::boot();
+        $subscriber = new \CodePress\CodeUser\Listener\TestEventListener;
 
-        Event::listen('event.*', function ($param1) {
-            echo "\n$param1";
-            echo Event::firing();
-        });
+        Event::subscribe($subscriber);
+
+        parent::boot();
 
     }
 }
