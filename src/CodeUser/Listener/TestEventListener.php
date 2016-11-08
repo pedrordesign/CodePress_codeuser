@@ -14,8 +14,8 @@ class TestEventListener{
     }
 
     public function subscribe($events){
-        Event::listen('TestEventListener\Numero1', '\CodePress\CodeUser\Listener\TestEventListener@numero1');
-        Event::listen('event.numero2', '\CodePress\CodeUser\Listener\TestEventListener@numero2');
+        Event::listen('TestEventListener\Numero1', '\CodePress\CodeUser\Listener\TestEventListener@numero1', 1);
+        Event::listen('TestEventListener\Numero1', '\CodePress\CodeUser\Listener\TestEventListener@numero2', 2);
     }
 
 }
