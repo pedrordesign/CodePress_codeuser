@@ -24,6 +24,15 @@ class UserCreatedEvent{
     }
 
     /**
+     * @param $user
+     * @return mixed
+     */
+    public function setUser($user){
+        $this->user = $user;
+        return $user;
+    }
+
+    /**
      * @return mixed
      */
     public function getPlainPassword()
@@ -32,11 +41,13 @@ class UserCreatedEvent{
     }
 
     /**
-     * @param mixed $plainPassword
+     * @param $plainPassword
+     * @return $this
      */
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
+        return $this;
     }
 
 }
