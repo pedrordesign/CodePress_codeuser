@@ -38,7 +38,18 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
-    public function LoginController(){
-        exit('asdasd');
+    public function showLoginForm(){
+        exit('123');
     }
+
+
+    public function login(){
+        exit('123');
+    }
+
+
+    public function logout(){
+        exit('123');
+    }
+
 }
