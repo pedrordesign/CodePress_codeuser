@@ -41,7 +41,8 @@ class CodeUserServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepositoryEloquent::class);
         $this->app->singleton('custom_router', function (){
-            return new Router();
+            //return new Router();
+            return new \CodePress\CodeUser\Routing\Router;
         });
     }
 
