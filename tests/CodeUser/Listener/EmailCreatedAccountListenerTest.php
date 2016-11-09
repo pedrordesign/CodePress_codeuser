@@ -43,6 +43,7 @@ class EmailCreatedAccountListenerTest extends AbstractTestCase{
                         ->with("{$mockUser->name}, sua conta foi criada!")
                     ;
                     $closure($mockMessage);
+                    return true;
                 })
             )
             ->andReturn(1)

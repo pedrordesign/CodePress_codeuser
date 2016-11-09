@@ -2,6 +2,8 @@
 
 namespace CodePress\CodeUser\Providers;
 
+use CodePress\CodeUser\Event\UserCreatedEvent;
+use CodePress\CodeUser\Listener\EmailCreatedAccountListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,7 +15,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-
+        UserCreatedEvent::class => [
+            EmailCreatedAccountListener::class
+        ]
     ];
 
 
@@ -25,9 +29,9 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $subscriber = new \CodePress\CodeUser\Listener\TestEventListener;
+        /*$subscriber = new \CodePress\CodeUser\Listener\TestEventListener;
 
-        Event::subscribe($subscriber);
+        Event::subscribe($subscriber);*/
 
         parent::boot();
 
