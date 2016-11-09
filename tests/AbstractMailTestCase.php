@@ -2,6 +2,8 @@
 
 namespace CodePress\CodeUser\Tests;
 
+require __DIR__ . '/AbstractTestCase.php';
+
 use Illuminate\Mail\MailServiceProvider;
 
 /**
@@ -54,7 +56,7 @@ abstract class AbstractMailTestCase extends AbstractTestCase
      */
     public function getPackageProviders($app)
     {
-        $array = parent::getPackageProviders();
+        $array = parent::getPackageProviders($app);
         return $array + [
             MailServiceProvider::class
         ];
