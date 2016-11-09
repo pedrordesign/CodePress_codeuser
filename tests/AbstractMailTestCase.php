@@ -12,6 +12,44 @@ use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
  */
 abstract class AbstractMailTestCase extends AbstractTestCase
 {
+
+    public static function setUpBeforeClass()
+    {
+        // exclude views folder
+        self::rrmdir(__DIR__ . '/views');
+
+        // create views folder
+        mkdir(__DIR__ . '/views');
+    }
+
+    public static function tearDownAfterClass()
+    {
+        // exclude views folder
+        self::rrmdir(__DIR__ . '/views');
+    }
+
+    public static function rrmdir($dir){
+        if(is_dir($dir))
+        {
+            $objects = scandir($dir);
+            foreach ($objects as $object)
+            {
+                if($object != "." && $object != "..")
+                {
+                    if(filetype($dir . "/" . $object) == "dir")
+                    {
+                        self::rrmdir($dir . "/" . $object);
+                    }
+                    else
+                    {
+                        unlink($dir . "/" . $object);
+                    }
+                }
+            }
+            rmdir($dir);
+        }
+    }
+
     /**
      * @param \Illuminate\Foundation\Application $app
      * @return array
