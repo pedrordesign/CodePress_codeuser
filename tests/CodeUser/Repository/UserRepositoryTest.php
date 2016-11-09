@@ -2,6 +2,7 @@
 
 namespace CodePress\CodeUser\Tests;
 
+use CodePress\CodeUser\Event\UserCreatedEvent;
 use CodePress\CodeUser\Repository\UserRepositoryEloquent;
 use CodePress\CodeUser\Repository\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,12 @@ class UserRepositoryTest extends AbstractTestCase{
 
     public function test_can_create_user()
     {
+        // supose that events trigger, do not realy send email
+        // PREVENTING
+        /*1) CodePress\CodeUser\Tests\UserRepositoryTest::test_can_create_user
+        InvalidArgumentException: View [email.registration] not found.*/
+
+    $this->expectsEvents(UserCreatedEvent::class);
         $user = $this->repository->create([
             'name' => 'Test',
             'email' => 'teste@teste.com',
