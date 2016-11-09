@@ -29,7 +29,7 @@ class UserRepositoryTest extends AbstractTestCase{
         /*1) CodePress\CodeUser\Tests\UserRepositoryTest::test_can_create_user
         InvalidArgumentException: View [email.registration] not found.*/
 
-    $this->expectsEvents(UserCreatedEvent::class);
+        $this->expectsEvents(UserCreatedEvent::class);
         $user = $this->repository->create([
             'name' => 'Test',
             'email' => 'teste@teste.com',
