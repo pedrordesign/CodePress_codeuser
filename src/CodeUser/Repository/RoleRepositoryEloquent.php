@@ -34,9 +34,11 @@ class RoleRepositoryEloquent extends AbstractRepository implements RoleRepositor
         return $model;
     }
 
-    public function lists($column, $key = null)
+    public function pluck($column, $key = null)
     {
         $this->applyCriteria();
-        return $this->model->lists($column,$key);
+        return $this->model->pluck($column,$key);
     }
+
+
 }

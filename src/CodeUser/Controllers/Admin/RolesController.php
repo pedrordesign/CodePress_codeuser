@@ -23,7 +23,6 @@ class RolesController extends Controller
         RoleRepositoryInterface $repository,
         PermissionRepositoryInterface $permissionRepository
     ) {
-        $this->authorize('access_users');
         $this->repository = $repository;
         $this->response = $response;
         $this->permissionRepository = $permissionRepository;
@@ -32,24 +31,24 @@ class RolesController extends Controller
     public function index()
     {
         $roles = $this->repository->all();
-        return $this->response->view('codeuser::admin.role.index', compact('roles'));
+        return $this->response->view('codeuser::roles.index', compact('roles'));
     }
 
     public function create()
     {
-        return view('codeuser::admin.role.create');
+        return view('codeuser::roles.create');
     }
 
     public function store(Request $request)
     {
         $this->repository->create($request->all());
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('roles.index');
     }
 
     public function edit($id)
     {
         $role = $this->repository->find($id);
-        return $this->response->view('codeuser::admin.role.edit', compact('role'));
+        return $this->response->view('codeuser::roles.edit', compact('role'));
     }
 
     public function update(Request $request, $id)
@@ -57,7 +56,7 @@ class RolesController extends Controller
         $data = $request->all();
 
         $this->repository->update($data, $id);
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('roles.index');
     }
 
 }

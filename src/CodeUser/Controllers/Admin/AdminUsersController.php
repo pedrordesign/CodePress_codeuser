@@ -3,6 +3,7 @@
 namespace CodePress\CodeUser\Controllers\Admin;
 
 use CodePress\CodeUser\Controllers\Controller;
+use CodePress\CodeUser\Repository\RoleRepositoryInterface;
 use CodePress\CodeUser\Repository\UserRepositoryInterface;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
@@ -12,11 +13,21 @@ class AdminUsersController extends Controller
 
     private $repository;
     private $response;
+    /**
+     * @var RoleRepositoryInterface
+     */
+    private $roleRepository;
 
-    public function __construct(ResponseFactory $response, UserRepositoryInterface $repository)
+
+    public function __construct(
+        ResponseFactory $response,
+        UserRepositoryInterface $repository,
+        RoleRepositoryInterface $roleRepository
+    )
     {
-        $this->repository = $repository;
         $this->response = $response;
+        $this->repository = $repository;
+        $this->roleRepository = $roleRepository;
     }
 
     /**
@@ -31,15 +42,16 @@ class AdminUsersController extends Controller
 
     public function create()
     {
+        $roles = $this->roleRepository->pluck('name', 'id');
         $users = $this->repository->all();
-        return view('codeuser::users.create', compact('users'));
+        return view('codeuser::users.create', compact('users', 'roles'));
 
     }
 
     public function store(Request $request)
     {
         $this->repository->create($request->all());
-        return redirect()->route('admin.users.index');
+        return redirect()->route('users.index');
     }
 
     public function edit($id)
@@ -61,7 +73,7 @@ class AdminUsersController extends Controller
 
         $user = $this-$this->repository->update($data, $id);
         //var_dump($user); die;
-        return redirect()->route('admin.users.index');
+        return redirect()->route('users.index');
     }
 
 }
