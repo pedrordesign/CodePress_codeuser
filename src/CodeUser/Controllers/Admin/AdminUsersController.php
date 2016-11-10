@@ -50,30 +50,29 @@ class AdminUsersController extends Controller
 
     public function store(Request $request)
     {
-        $this->repository->create($request->all());
-        return redirect()->route('users.index');
+        $user = $this->repository->create($request->all());
+        $this->repository->addRoles($user->id, $request->get('roles'));
+        return redirect()->route('admin.users.index');
     }
 
     public function edit($id)
     {
+        $roles = $this->roleRepository->pluck('name', 'id');
         $user = $this->repository->find($id);
-        $users = $this->repository->all();
-        return $this->response->view('codeuser::users.edit', compact('user', 'users'));
+        return $this->response->view('codeuser::users.edit', compact('user', 'roles'));
     }
     
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        //var_dump($data); die;
-        if(!isset($data['active'])){
-            $data['active'] = false;
-        }else{
-            $data['active'] = true;
+
+        if(isset($data['password'])){
+            unset($data['password']);
         }
 
-        $user = $this-$this->repository->update($data, $id);
-        //var_dump($user); die;
-        return redirect()->route('users.index');
+        $this->repository->addRoles($id, $request->get('roles'));
+        $this->repository->update($data, $id);
+        return redirect()->route('admin.users.index');
     }
 
 }

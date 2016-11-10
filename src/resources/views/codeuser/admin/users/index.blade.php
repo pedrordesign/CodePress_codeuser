@@ -6,7 +6,7 @@
 
         <h3>Users</h3>
 
-        <a href="{{ route('admin.users.create') }}">Create Post</a>
+        <a href="{{ route('admin.users.create') }}">Create User</a>
         <br><br>
 
         <table class="table table-bordered">

@@ -6,36 +6,31 @@
 
         <h3>Create User</h3>
 
-        {!! Form::Open(['method' => 'post', 'route' => ['admin.posts.store']]) !!}
+        {!! Form::Open(['method' => 'post', 'route' => ['admin.users.store']]) !!}
 
             <div class="form-group">
-                {!! Form::label('Title', 'Name:') !!}
-                {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                {!! Form::label('name', 'Name:') !!}
+                {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
-                {!! Form::label('Title', 'Username:') !!}
-                {!! Form::text('username', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('roles[]', 'Roles:') !!}
-                {!! Form::select('roles[]', $roles, null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('Title', 'Email:') !!}
+                {!! Form::label('email', 'Email:') !!}
                 {!! Form::text('email', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
-                {!! Form::label('Title', 'Password:') !!}
-                {!! Form::text('password', null, ['class' => 'form-control', 'type' => 'password']) !!}
+                {!! Form::label('password', 'Password:') !!}
+                {!! Form::password('password', ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('Active', 'Active:') !!}
                 {!! Form::checkbox('active', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('roles[]', 'Roles:') !!}
+                {!! Form::select('roles[]', $roles, null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
             </div>
 
             <div class="form-group">
