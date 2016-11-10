@@ -13,4 +13,10 @@ class PermissionRepositoryEloquent extends AbstractRepository implements Permiss
         return Permission::class;
     }
 
+    public function pluck($column, $key = null)
+    {
+        $this->applyCriteria();
+        return $this->model->pluck($column,$key);
+    }
+
 }

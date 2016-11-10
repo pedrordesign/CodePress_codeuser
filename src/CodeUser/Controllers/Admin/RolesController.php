@@ -18,6 +18,7 @@ class RolesController extends Controller
      */
     private $permissionRepository;
 
+
     public function __construct(
         ResponseFactory $response,
         RoleRepositoryInterface $repository,
@@ -36,27 +37,33 @@ class RolesController extends Controller
 
     public function create()
     {
-        return view('codeuser::roles.create');
+        $permissions = $this->permissionRepository->pluck('name', 'id');
+        return view('codeuser::roles.create', compact('permissions'));
     }
 
     public function store(Request $request)
     {
-        $this->repository->create($request->all());
-        return redirect()->route('roles.index');
+        $role = $this->repository->create($request->all());
+        $this->repository->addPermissions($role->id, $request->get('permissions'));
+
+        return redirect()->route('admin.roles.index');
     }
 
     public function edit($id)
     {
+        $permissions = $this->permissionRepository->pluck('name', 'id');
         $role = $this->repository->find($id);
-        return $this->response->view('codeuser::roles.edit', compact('role'));
+        return $this->response->view('codeuser::roles.edit', compact('role', 'permissions'));
     }
 
     public function update(Request $request, $id)
     {
         $data = $request->all();
 
-        $this->repository->update($data, $id);
-        return redirect()->route('roles.index');
+        $role = $this->repository->update($data, $id);
+        $this->repository->addPermissions($role->id, $request->get('permissions'));
+
+        return redirect()->route('admin.roles.index');
     }
 
 }

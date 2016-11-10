@@ -8,4 +8,5 @@ use CodePress\CodeDatabase\Contracts\RepositoryInterface;
 
 interface PermissionRepositoryInterface extends RepositoryInterface, CriteriaCollection
 {
+    public function pluck($column, $key = null);
 }
