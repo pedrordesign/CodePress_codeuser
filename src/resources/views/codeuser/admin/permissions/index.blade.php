@@ -14,12 +14,12 @@
             </tr>
             </thead>
             <tboby>
-                @foreach($permissions as $ $permission)
+                @foreach($permissions as $permission)
                     <tr>
-                        <td>{{$permission->id}}</td>
-                        <td>{{$permission->name}}</td>
+                        <td>{{ $permission->id }}</td>
+                        <td>{{ $permission->name }}</td>
                         <td>
-                            <a name="link_view_permission_{{$permission->id}}" href="{{route('admin.permissions.show', ['id'=>$permission->id])}}">
+                            <a name="link_view_permission_{{ $permission->id }}" href="{{route('admin.permissions.show', ['id'=>$permission->id])}}">
                                 View
                             </a>
                         </td>

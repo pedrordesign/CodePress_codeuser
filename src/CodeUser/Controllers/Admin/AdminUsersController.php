@@ -1,18 +1,19 @@
 <?php
 
-namespace CodePress\CodeUser\Controllers;
+namespace CodePress\CodeUser\Controllers\Admin;
 
-use CodePress\CodeUser\Repository\UserepositoryInterface;
+use CodePress\CodeUser\Controllers\Controller;
+use CodePress\CodeUser\Repository\UserRepositoryInterface;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 
-class AdminPostController extends Controller
+class AdminUsersController extends Controller
 {
 
     private $repository;
     private $response;
 
-    public function __construct(ResponseFactory $response, UserepositoryInterface $repository)
+    public function __construct(ResponseFactory $response, UserRepositoryInterface $repository)
     {
         $this->repository = $repository;
         $this->response = $response;
@@ -24,14 +25,14 @@ class AdminPostController extends Controller
     public function index()
     {
         $users = $this->repository->all();
-        return $this->response->view('codeuser::index', compact('users'));
+        return $this->response->view('codeuser::users.index', compact('users'));
 
     }
 
     public function create()
     {
         $users = $this->repository->all();
-        return view('codeuser::create', compact('users'));
+        return view('codeuser::users.create', compact('users'));
 
     }
 
@@ -45,7 +46,7 @@ class AdminPostController extends Controller
     {
         $user = $this->repository->find($id);
         $users = $this->repository->all();
-        return $this->response->view('codeuser::edit', compact('user', 'users'));
+        return $this->response->view('codeuser::users.edit', compact('user', 'users'));
     }
     
     public function update(Request $request, $id)

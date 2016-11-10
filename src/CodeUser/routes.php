@@ -8,11 +8,11 @@ Route::group([
 ], function () {
 
     Route::group(['prefix' => 'users', 'as' => 'users.'],function(){
-        Route::get('/', ['uses' => 'Admin\UsersController@index', 'as' => 'index']);
-        Route::get('/create', ['uses' =>'Admin\UsersController@create', 'as' => 'create']);
-        Route::post('/store', ['uses' =>'Admin\UsersController@store', 'as' => 'store']);
-        Route::get('{id}/edit', ['uses' =>'Admin\UsersController@edit', 'as' => 'edit']);
-        Route::put('{id}/update', ['uses' =>'Admin\UsersController@update', 'as' => 'update']);
+        Route::get('/', ['uses' => 'Admin\AdminUsersController@index', 'as' => 'index']);
+        Route::get('/create', ['uses' =>'Admin\AdminUsersController@create', 'as' => 'create']);
+        Route::post('/store', ['uses' =>'Admin\AdminUsersController@store', 'as' => 'store']);
+        Route::get('{id}/edit', ['uses' =>'Admin\AdminUsersController@edit', 'as' => 'edit']);
+        Route::put('{id}/update', ['uses' =>'Admin\AdminUsersController@update', 'as' => 'update']);
     });
 
     Route::group(['prefix' => 'roles', 'as' => 'roles.'],function(){
@@ -25,7 +25,7 @@ Route::group([
 
     Route::group(['prefix' => 'permissions', 'as' => 'permissions.'],function(){
         Route::get('/', ['uses' => 'Admin\PermissionsController@index', 'as' => 'index']);
-        Route::get('/view', ['uses' =>'Admin\PermissionsController@view', 'as' => 'show']);
+        Route::get('{id}/view', ['uses' =>'Admin\PermissionsController@show', 'as' => 'show']);
     });
 
 });

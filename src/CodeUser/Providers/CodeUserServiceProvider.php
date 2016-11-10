@@ -40,7 +40,7 @@ class CodeUserServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/views/email' => base_path('resources/views/email')
         ], 'email');
 
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/codeuser', 'codeuser');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/codeuser/admin', 'codeuser');
         require __DIR__ . '/../routes.php';
     }
 

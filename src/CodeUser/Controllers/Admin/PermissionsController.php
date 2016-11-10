@@ -15,7 +15,6 @@ class PermissionsController extends Controller
 
     public function __construct(ResponseFactory $response, PermissionRepositoryInterface $repository)
     {
-        $this->authorize('access_users');
         $this->repository = $repository;
         $this->response = $response;
     }
@@ -23,13 +22,13 @@ class PermissionsController extends Controller
     public function index()
     {
         $permissions = $this->repository->all();
-        return $this->response->view('codeuser::admin.permission.index', compact('permissions'));
+        return $this->response->view('codeuser::permissions.index', compact('permissions'));
     }
 
     public function show($id)
     {
         $permission = $this->repository->find($id);
-        return $this->response->view('codeuser::admin.permission.show', compact('permission'));
+        return $this->response->view('codeuser::permissions.show', compact('permission'));
     }
 
 }

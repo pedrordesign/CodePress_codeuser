@@ -22,7 +22,7 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->title }}</td>
+                        <td>{{ $user->name }}</td>
                         <!--<td>{{ str_limit($user->content, 55) }}</td>-->
                         <td>
                             <a name="link_edit_user_{{$user->id}}" href="{{route('admin.users.edit', ['id' => $user->id])}}">
