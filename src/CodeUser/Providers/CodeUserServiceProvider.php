@@ -59,6 +59,7 @@ class CodeUserServiceProvider extends ServiceProvider
             //return new \CodePress\CodeUser\Routing\Router;
         });
         $this->app->register(EventServiceProvider::class);
+        $this->app->register(AuthServiceProvider::class);
     }
 
 }
