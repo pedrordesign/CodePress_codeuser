@@ -1,18 +1,19 @@
 <?php
 
-namespace CodePress\CodeUser\Controllers;
+namespace CodePress\CodeUser\Controllers\Admin;
 
-use CodePress\CodeUser\Repository\UserepositoryInterface;
+use CodePress\CodeUser\Repository\UserRepositoryInterface;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
+use CodePress\CodeUser\Controllers\Controller;
 
-class AdminPostController extends Controller
+class AdminUserController extends Controller
 {
 
     private $repository;
     private $response;
 
-    public function __construct(ResponseFactory $response, UserepositoryInterface $repository)
+    public function __construct(ResponseFactory $response, UserRepositoryInterface $repository)
     {
         $this->repository = $repository;
         $this->response = $response;
